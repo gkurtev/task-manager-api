@@ -81,7 +81,7 @@ router.delete('/users/me', authMiddleware, async (req, res) => {
     res.send(req.user)
   } catch (e) {
     /* handle error */
-    res.status(404).send()
+    res.status(401).send()
   }
 })
 
