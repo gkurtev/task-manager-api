@@ -1,26 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <ul>
+    <li v-for="user in users" :key="user.id">
+      {{user.name}}
+    </li>
+  </ul>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-const API_URL = 'http://gk-task-manager.herokuapp.com/'
+/* import HelloWorld from './components/HelloWorld.vue' */
+const API_URL = 'https://gk-task-manager.herokuapp.com/users'
 
 console.log(API_URL)
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    /* HelloWorld */
   },
-  mounted(){
+  data: () => ({
+     users: []
+    }),
+    mounted(){
       fetch(API_URL).then(res => {
-          res.json().then(data => {
-              console.log(data)
-            })
-        })
-    }
+        res.json().then(data => {
+            this.users = data
+          })
+      })
+  }
 }
 </script>
 
