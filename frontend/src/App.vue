@@ -1,33 +1,25 @@
 <template>
-  <ul>
-    <li v-for="user in users" :key="user.id">
-      {{user.name}}
-    </li>
-  </ul>
+  <div>
+    <ul>
+      <li v-for="user in users" :key="user.id">
+        {{ user.name }}
+      </li>
+    </ul>
+
+    <nav>
+      <router-link to="/">Home</router-link>
+      <router-link to="/register">Register</router-link>
+      <router-link to="/login">Login</router-link>
+    </nav>
+
+    <router-view />
+  </div>
 </template>
 
 <script>
-/* import HelloWorld from './components/HelloWorld.vue' */
-const API_URL = 'https://gk-task-manager.herokuapp.com/users'
-
-console.log(API_URL)
-
 export default {
-  name: 'App',
-  components: {
-    /* HelloWorld */
-  },
-  data: () => ({
-     users: []
-    }),
-    mounted(){
-      fetch(API_URL).then(res => {
-        res.json().then(data => {
-            this.users = data
-          })
-      })
-  }
-}
+  name: "App",
+};
 </script>
 
 <style>
